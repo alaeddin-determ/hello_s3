@@ -79,10 +79,9 @@ set(DLL_FILES
 )
 
 
-set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug)
-message(STATUS "OUTPUT_DIRECTORY: ${OUTPUT_DIRECTORY}")
 
-file(COPY ${DLL_FILES} DESTINATION ${OUTPUT_DIRECTORY})
+file(COPY ${DLL_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Debug)
+file(COPY ${DLL_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Release)
 
 
 if (WINDOWS_BUILD AND AWSSDK_INSTALL_AS_SHARED_LIBS)
@@ -97,6 +96,7 @@ endif ()
 add_executable(${PROJECT_NAME}
         hello_s3.cpp)
 
+message(STATUS "AWSSDK_LINK_LIBRARIES: ${AWSSDK_LINK_LIBRARIES}")   
 target_link_libraries(${PROJECT_NAME}
         ${AWSSDK_LINK_LIBRARIES})
 # snippet-end:[cpp.example_code.s3.hello_s3.cmake]
